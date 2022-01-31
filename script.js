@@ -1,3 +1,14 @@
+/*
+
+        Hello Ricardo, I had never worked with these services so it took me a long time 
+        to consult and try various methods that I found so I only managed to do the first step
+        of the challenge. I'm sorry I haven't finished all the points in time but I find the 
+        topic quite interesting and I would like to learn much more about it and improve my skills as a programmer.
+
+*/ 
+
+
+
 var json_obj = new Object();
 var jsonString;
 
