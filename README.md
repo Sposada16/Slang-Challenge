@@ -1,1 +1,1 @@
-# Slang-Challenge
+# Slang-Challenge - Sergio Posada Henao
