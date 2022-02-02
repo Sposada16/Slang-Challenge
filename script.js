@@ -16,7 +16,19 @@ fetch('https://api.slangapp.com/challenges/v1/activities', {
         console.log("429 too many requests")
     }
 }).then(data => {
-    console.log(data)
+
+    const array = data;
+    console.log(array.activities);
+
+    var groupBy = function(xs, key) {
+        return xs.reduce(function(rv, x) {
+          (rv[x[key]] = rv[x[key]] || []).push(x);
+          return rv;
+        }, {});
+      };
+      
+      console.log(groupBy(array.activities, 'user_id'));
+
 });
 
 
