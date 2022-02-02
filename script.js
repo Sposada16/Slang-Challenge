@@ -23,20 +23,44 @@ fetch('https://api.slangapp.com/challenges/v1/activities', {
 
     //2nd Step//
 
-    var groupBy = function(xs, key) {
-        return xs.reduce(function(rv, x) {
-          (rv[x[key]] = rv[x[key]] || []).push(x);
-          return rv;
+    var groupBy = function (xs, key) {
+        return xs.reduce(function (rv, x) {
+            (rv[x[key]] = rv[x[key]] || []).push(x);
+            return rv;
         }, {});
-      };
-      
-      groupedByActivities = groupBy(array.activities, 'user_id');
+    };
 
-      console.log(groupedByActivities[Object.keys(groupedByActivities)[0]]);
+    groupedByActivities = groupBy(array.activities, 'user_id');
 
-      //
+    console.log(groupedByActivities[Object.keys(groupedByActivities)[0]]);
 
-      
+    //
+
+    //3rd step//
+
+    fetch('https://api.slangapp.com/challenges/v1/activities/sessions', {
+        method: 'post',
+        headers: new Headers({
+            'Authorization': 'Basic MTQ6a0pxOWVEUXZZTm5oZ2J0b3NOTXg4aXV6TXA4cTdzZm1DRXMyU01qcTlTWT0=',
+            'Content-Type': 'application/json'
+        }),
+        body: {"user_sessions":groupedByActivities}
+    }).then(result => {
+        if (result.ok) {
+            console.log(result.status);
+            return result.json();
+        } else if (result.status == 401) {
+            console.log("401 Unauthorized");
+        } else if (result.status == 400) {
+            console.log("400 Bad request");
+        } else {
+            console.log("429 too many requests")
+        }
+    }).then(dataf => {
+        console.log(dataf);
+    })
+
+    //
 
 });
 
