@@ -18,7 +18,10 @@ fetch('https://api.slangapp.com/challenges/v1/activities', {
 }).then(data => {
 
     const array = data;
-    console.log(array.activities);
+    console.log(array);
+
+
+    //2nd Step//
 
     var groupBy = function(xs, key) {
         return xs.reduce(function(rv, x) {
@@ -27,7 +30,13 @@ fetch('https://api.slangapp.com/challenges/v1/activities', {
         }, {});
       };
       
-      console.log(groupBy(array.activities, 'user_id'));
+      groupedByActivities = groupBy(array.activities, 'user_id');
+
+      console.log(groupedByActivities[Object.keys(groupedByActivities)[0]]);
+
+      //
+
+      
 
 });
 
